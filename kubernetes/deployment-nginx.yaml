@@ -14,6 +14,24 @@ spec:
         spec:
             containers:
             - name: nginx
-              image: nginx
+              image: nginx:1.18
               ports:
               - containerPort: 80
+              resources:
+                  requests:
+                      cpu: 0.1
+                      memory: 20M
+                  limits:
+                      cpu: 200m
+                      memory: 20M
+              livenessProbe:
+                  httpGet:
+                      path: /
+                      port: 80
+                  initialDelaySeconds: 15
+                  periodSeconds: 30
+              readinessProbe:
+                  httpGet:
+                      path: /
+                      port: 80
+                  periodSeconds: 5
