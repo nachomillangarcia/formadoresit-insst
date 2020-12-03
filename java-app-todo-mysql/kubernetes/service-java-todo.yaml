@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: service-java-todo
 spec:
+  type: NodePort
   selector:
     app: java-todo
   ports:
