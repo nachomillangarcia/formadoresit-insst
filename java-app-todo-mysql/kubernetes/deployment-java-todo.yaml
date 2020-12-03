@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: java-todo
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: java-todo
+    template:
+        metadata:
+            labels:
+                app: java-todo
+        spec:
+            containers:
+            - name: java-todo
+              image: nachomillangarcia/java-insst:latest
+              ports:
+              - containerPort: 8080
+              env:
+              - name: DB_HOSTNAME
+                value: service-mysql
+              - name: DB_NAME
+                value: todo
+              - name: DB_USERNAME
+                value: todo
+              - name: DB_PASSWORD
+                value: pass
