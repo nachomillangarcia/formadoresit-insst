@@ -24,3 +24,18 @@ Usuario: formadoresit
 
 Contraseña: dummy
 
+## Kubernetes
+
+Para desplegar la base de datos:
+
+```
+kubectl apply -f kubernetes/deployment-mysql.yaml
+kubectl apply -f kubernetes/service-mysql.yaml
+```
+
+Para desplegar la aplicación:
+
+```
+kubectl apply -f kubernetes/deployment-java-todo.yaml
+kubectl apply -f kubernetes/service-java-todo.yaml
+```
