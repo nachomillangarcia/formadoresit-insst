@@ -13,6 +13,12 @@ spec:
                 app: java-todo
         spec:
             containers:
+            - name: apache
+              volumeMounts:
+                - mountPath: /root/config
+                  name: myconfig-map
+                - mountPath: /logs
+                  name: mysql-data
             - name: java-todo
               image: nachomillangarcia/java-insst:latest
               ports:
@@ -42,3 +48,15 @@ spec:
                   tcpSocket:
                     port: 8080
                   periodSeconds: 5
+              volumeMounts:
+                - mountPath: /root/config
+                  name: myconfig-map
+                - mountPath: /var/lib/mysql
+                  name: mysql-data                  
+            volumes:
+            - name: myconfig-map
+              secret:
+                  name: application-config
+            - name: mysql-data
+              persistentVolumeClaim:
+                  claimName: mysql-data     

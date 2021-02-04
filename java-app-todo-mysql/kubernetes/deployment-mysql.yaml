@@ -26,4 +26,12 @@ spec:
                 value: todo
               - name: MYSQL_PASSWORD
                 value: pass
+              volumeMounts:
+                - mountPath: /var/lib/mysql
+                  name: mysql-data
 
+
+            volumes:
+            - name: mysql-data
+              persistentVolumeClaim:
+                  claimName: insst-data   
